@@ -26,8 +26,8 @@ for tr in time_ranges:
     xarr[i] = dc.load(product=product, longitude=(min_long, min_long+1.0), latitude=(min_lat, min_lat+1), time=tr)
     i+=1
 
-for i in range(0,1):
-    xarr0=xarr[i] 
-    del xarr
+
+ xarr0=xarr[0] 
+ del xarr
     
-    xarr0.to_netcdf(str(i)+str(min_long)+'_'+str(min_lat)+"_salida.nc")
+ xarr0.to_netcdf(str(min_long)+'_'+str(min_lat)+"_salida.nc")
