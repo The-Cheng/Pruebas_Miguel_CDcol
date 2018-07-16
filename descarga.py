@@ -30,4 +30,6 @@ for tr in time_ranges:
  xarr0=xarr[0] 
  del xarr
     
- xarr0.to_netcdf(str(min_long)+'_'+str(min_lat)+"_salida.nc")
+ output= xarr0
+    
+ #xarr0.to_netcdf(str(min_long)+'_'+str(min_lat)+"_salida.nc")
