@@ -4,8 +4,8 @@ import xarray as xr
 import numpy as np
 import datacube
 
-xarr0=xarr[0] 
-del xarr
+#xarr0=xarr[0] 
+#del xarr
     
 output= xarr0
 
