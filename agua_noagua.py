@@ -20,7 +20,7 @@ def isin(element, test_elements, assume_unique=False, invert=False):
 # #área sobre la cual se hará la consulta:
 # min_long = -69
 # min_lat = 2
-# normalized=True
+normalized=True
 
 slice_size = 3
 
