@@ -22,11 +22,11 @@ def isin(element, test_elements, assume_unique=False, invert=False):
 # min_lat = 2
 normalized=True
 
-slice_size = 3
+slice_size = 1
 
 ndwi_threshold = 0.5
 
-vegetation_rate = 0.2
+vegetation_rate = 0.1
 
 #########################################################################
 
