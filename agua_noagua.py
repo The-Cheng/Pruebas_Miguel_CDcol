@@ -26,7 +26,7 @@ slice_size = 1
 
 ndwi_threshold = 0.5
 
-vegetation_rate = 0.1
+vegetation_rate = -0.4
 
 #########################################################################
 
