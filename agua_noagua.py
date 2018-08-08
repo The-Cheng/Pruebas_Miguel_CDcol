@@ -24,9 +24,9 @@ normalized=True
 
 slice_size = 1
 
-ndwi_threshold = 0.5
+ndwi_threshold = ndwi_threshold 
 
-vegetation_rate = -0.4
+#vegetation_rate =vegetation_rate
 
 #########################################################################
 
@@ -90,7 +90,7 @@ for y1 in xrange(0, height, slice_size):
         ok_pixels = np.count_nonzero(~np.isnan(submatrix))
         if ok_pixels==0:
             agua_noagua[y1:y2,x1:x2] = nodata
-        elif float(np.nansum(submatrix>ndwi_threshold))/float(ok_pixels) >= vegetation_rate :
+        elif float(np.nansum(submatrix>ndwi_threshold)):#/float(ok_pixels) >= vegetation_rate :
             agua_noagua[y1:y2,x1:x2] = 1
         else:
             agua_noagua[y1:y2,x1:x2] = 0
