@@ -14,6 +14,7 @@ def isin(element, test_elements, assume_unique=False, invert=False):
 
 
 
+minValid=1
 normalized=True
 nbar = xarr0
 nodata=-9999
