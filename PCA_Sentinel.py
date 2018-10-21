@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# -*- coding: utf-8 -*-
-
 from matplotlib.mlab import PCA
 from sklearn.preprocessing import normalize
 from scipy.cluster.vq import kmeans2,vq
