@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# -*- coding: utf-8 -*-
+
 from matplotlib.mlab import PCA
 from sklearn.preprocessing import normalize
 from scipy.cluster.vq import kmeans2,vq
@@ -15,6 +17,7 @@ def isin(element, test_elements, assume_unique=False, invert=False):
     "definiendo la función isin de numpy para la versión anterior a la 1.13, en la que no existe"
     element = np.asarray(element)
     return np.in1d(element, test_elements, assume_unique=assume_unique, invert=invert).reshape(element.shape)
+
 
 
 nbar = xarr0
@@ -81,6 +84,9 @@ for x in  xarr0.coords:
     xdims.append(x)
     xcords[x] = xarr0.coords[x]
 
+#valores = {"kmeans": xr.DataArray(kmv.astype(np.int8),  dims=xdims, coords=ncoords)}
+
+valores ={}
 i=1
 for x in salida:
     valores["pc"+str(i)]=xr.DataArray(x, dims=xdims, coords=ncoords)
