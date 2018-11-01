@@ -77,4 +77,4 @@ for x in salida:
     valores["pc"+str(i)]=xr.DataArray(x, dims=xdims, coords=ncoords)
     i+=1
 output = xr.Dataset(valores, attrs={'crs': xarr0.crs})
-output.attrs["crs"]=output.crs.crs_wkt
+#utput.attrs["crs"]=output.crs.crs_wkt
