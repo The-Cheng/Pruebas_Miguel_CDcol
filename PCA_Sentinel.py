@@ -78,3 +78,6 @@ for x in salida:
     i+=1
 output = xr.Dataset(valores, attrs={'crs': xarr0.crs})
 #utput.attrs["crs"]=output.crs.crs_wkt
+
+for coordenada in output.coords:
+    output.coords[coordenada].attrs["units"] = xarr0.coords[coordenada].units
