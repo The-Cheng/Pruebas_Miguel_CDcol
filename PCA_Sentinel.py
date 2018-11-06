@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 
 from matplotlib.mlab import PCA
@@ -9,6 +10,8 @@ from osgeo import gdal, ogr
 import sys
 import os
 from osgeo import osr
+import pandas as pd
+#Calcular el compuesto de medianas para cada uno de las entradas
 
 def isin(element, test_elements, assume_unique=False, invert=False):
     "definiendo la función isin de numpy para la versión anterior a la 1.13, en la que no existe"
@@ -16,26 +19,30 @@ def isin(element, test_elements, assume_unique=False, invert=False):
     return np.in1d(element, test_elements, assume_unique=assume_unique, invert=invert).reshape(element.shape)
 
 
+
 nbar = xarr0
 nodata=-9999
 medians1={}
 
+
+
 Bandas=np.asarray(xarr0.data_vars)
 for band in Bandas[1:]:
     datos=nbar.data_vars[band]
+    allNan=~np.isnan(datos)
     medians1[band]=datos
-
 
 del datos
 nbar = xarr1
 nodata=-9999
 medians2={}
-    
+
 for band in Bandas[1:]:
     datos=nbar.data_vars[band]
+    allNan=~np.isnan(datos)
 
     medians2[band]=datos
-    
+
 del datos
 #Preprocesar:
 nmed=None
@@ -56,28 +63,40 @@ for band in medians1:
     nan_mask=np.logical_or(nan_mask, np.isnan(c))
     c[np.isnan(c)]=np.nanmedian(c)
     nmed=np.vstack((nmed,c))
-    
-    #PCA
+del medians1
+del medians2
+#PCA
 r_PCA=PCA(nmed.T)
 salida= r_PCA.Y.T.reshape((r_PCA.Y.T.shape[0],)+sp)
-
+#Kmeans - 4 clases
+km_centroids, kmvalues=kmeans2(r_PCA.Y,4)
+#Salida:
+salida[:,nan_mask.reshape(sp)]=np.nan
+kmv= kmvalues.T.reshape(sp)
+kmv[nan_mask.reshape(sp)]=nodata
 
 ncoords = []
 xdims = []
 xcords = {}
 for x in  xarr0.coords:
-    # if (x != 'time'):
-    ncoords.append((x, xarr0.coords[x]))
-    xdims.append(x)
-    xcords[x] = xarr0.coords[x]
+    if (x != 'time'):
+        ncoords.append((x, xarr0.coords[x]))
+        xdims.append(x)
+        xcords[x] = xarr0.coords[x]
+
+
 
 valores ={}
 i=1
 for x in salida:
-    valores["pc"+str(i)]=xr.DataArray(x, dims=xdims, coords=ncoords)
+    valores["pc"+str(i)]=xr.DataArray(x[0], dims=xdims, coords=ncoords)
     i+=1
 output = xr.Dataset(valores, attrs={'crs': xarr0.crs})
-#utput.attrs["crs"]=output.crs.crs_wkt
+
+
 
 for coordenada in output.coords:
     output.coords[coordenada].attrs["units"] = xarr0.coords[coordenada].units
+
+output.attrs["crs"]=output.crs.crs_wkt
+
