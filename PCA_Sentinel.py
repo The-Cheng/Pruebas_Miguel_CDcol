@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 
 from matplotlib.mlab import PCA
@@ -72,8 +71,7 @@ salida= r_PCA.Y.T.reshape((r_PCA.Y.T.shape[0],)+sp)
 km_centroids, kmvalues=kmeans2(r_PCA.Y,4)
 #Salida:
 salida[:,nan_mask.reshape(sp)]=np.nan
-kmv= kmvalues.T.reshape(sp)
-kmv[nan_mask.reshape(sp)]=nodata
+
 
 ncoords = []
 xdims = []
