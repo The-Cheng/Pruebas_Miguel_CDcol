@@ -90,17 +90,13 @@ for x in salida:
     valores["pc"+str(i)]=xr.DataArray(x[0], dims=xdims, coords=ncoords)
     i+=1
 
-print xarr0.coords['longitude'].units
 
-
-
-"""
 output = xr.Dataset(valores, attrs={'crs': xarr0.crs})
 for coordenada in output.coords:
     output.coords[coordenada].attrs["units"] = xarr0.coords[coordenada].units
-    print xarr0.coords[coordenada].units
+
    
 
 output.attrs["crs"]=output.crs.crs_wkt
 
-"""
+
