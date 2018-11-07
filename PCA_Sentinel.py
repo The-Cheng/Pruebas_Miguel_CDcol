@@ -97,6 +97,6 @@ for coordenada in output.coords:
 
    
 
-output.attrs["crs"]=output.crs.crs_wkt
+#output.attrs["crs"]=output.crs.crs_wkt
 
 
