@@ -25,8 +25,8 @@ medians1={}
 
 
 
-Bandas=np.asarray(xarr0.data_vars)
-for band in Bandas[1:]:
+Bandas=["vh","vv"]
+for band in Bandas[0:]:
     datos=nbar.data_vars[band]
     allNan=~np.isnan(datos)
     medians1[band]=datos
@@ -36,7 +36,7 @@ nbar = xarr1
 nodata=-9999
 medians2={}
 
-for band in Bandas[1:]:
+for band in Bandas[0:]:
     datos=nbar.data_vars[band]
     allNan=~np.isnan(datos)
 
@@ -67,8 +67,7 @@ del medians2
 #PCA
 r_PCA=PCA(nmed.T)
 salida= r_PCA.Y.T.reshape((r_PCA.Y.T.shape[0],)+sp)
-#Kmeans - 4 clases
-km_centroids, kmvalues=kmeans2(r_PCA.Y,4)
+
 #Salida:
 salida[:,nan_mask.reshape(sp)]=np.nan
 
@@ -96,7 +95,3 @@ for coordenada in output.coords:
     output.coords[coordenada].attrs["units"] = xarr0.coords[coordenada].units
 
    
-
-#output.attrs["crs"]=output.crs.crs_wkt
-
-
