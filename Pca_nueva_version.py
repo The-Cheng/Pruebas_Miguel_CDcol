@@ -14,6 +14,8 @@ def isin(element, test_elements, assume_unique=False, invert=False):
 
 
 
+
+
 nbar = xarr0
 
 
@@ -21,7 +23,7 @@ bands=np.asarray(nbar.data_vars)
 nodata=-9999
 
 validValues=set()
-if product=='LS7_ETM_LEDAPS_MOSAIC':
+if product0=='LS7_ETM_LEDAPS_MOSAIC':
     medians1={}
     for band in bands[1:]:
         datos = nbar.data_vars[band]
@@ -33,9 +35,9 @@ if product=='LS7_ETM_LEDAPS_MOSAIC':
 
 else:
     medians1 = {}
-    if product=="LS7_ETM_LEDAPS" or product=="LS5_TM_LEDAPS":
+    if product0=="LS7_ETM_LEDAPS" or product0=="LS5_TM_LEDAPS":
         validValues=[66,68,130,132]
-    elif product == "LS8_OLI_LASRC":
+    elif product0 == "LS8_OLI_LASRC":
         validValues=[322, 386, 834, 898, 1346, 324, 388, 836, 900, 1348]
 
     cloud_mask=isin(nbar["pixel_qa"].values, validValues)
@@ -56,7 +58,7 @@ nodata=-9999
 medians2={}
 
 
-if product=='LS7_ETM_LEDAPS_MOSAIC':
+if product1=='LS7_ETM_LEDAPS_MOSAIC':
     medians2={}
     for band in bands[1:]:
         datos =nbar.data_vars[band]
@@ -69,9 +71,9 @@ if product=='LS7_ETM_LEDAPS_MOSAIC':
 else:
     medians2 = {}
 
-    if product=="LS7_ETM_LEDAPS" or product=="LS5_TM_LEDAPS":
+    if product1=="LS7_ETM_LEDAPS" or product1=="LS5_TM_LEDAPS":
         validValues=[66,68,130,132]
-    elif product == "LS8_OLI_LASRC":
+    elif product1 == "LS8_OLI_LASRC":
         validValues=[322, 386, 834, 898, 1346, 324, 388, 836, 900, 1348]
 
     cloud_mask=isin(nbar["pixel_qa"].values, validValues)
